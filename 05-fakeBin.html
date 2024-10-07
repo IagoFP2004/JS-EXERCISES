@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FakeBin</title>
 </head>
+
 <body>
     <script>
-        
+        function fakeBin(x) {
+
+            if (x === null) {
+                alert("La cadena de texto no puede estar vacía")
+            } else {
+
+                var result = "";
+
+                for(let i=0; i<x.length; i++){
+                    let num=parseInt(x[i]);
+
+                    if(num<5){
+                        result += '0';
+                    }else{
+                        result += '1';
+                    }
+                }
+
+            }
+            return result;
+        }
+        document.write(fakeBin("45385593107843568"));
     </script>
 </body>
+
 </html>
