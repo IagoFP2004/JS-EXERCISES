@@ -11,26 +11,26 @@
     <script>
         function fakeBin(x) {
 
-            if (x === null) {
-                alert("La cadena de texto no puede estar vacía")
+            if (x === null) {//Si el resultado es null
+                alert("La cadena de texto no puede estar vacía") //nos da una alerta donde nos dice que la string no puede estar vacia
             } else {
 
-                var result = "";
+                var result = ""; //variable donde almacenaremos el resultado
 
-                for(let i=0; i<x.length; i++){
-                    let num=parseInt(x[i]);
+                for(let i=0; i<x.length; i++){ //nos recorremos el numero que tiene formato string
+                    let num=parseInt(x[i]); //pasamos el indice a int y lo almacenamos en una variable
 
-                    if(num<5){
-                        result += '0';
-                    }else{
-                        result += '1';
+                    if(num<5){ //si el numero es menos a 5
+                        result += '0'; //el valor se sustituye por 0 y seguimos leyendo
+                    }else{ //si el numero es mayor a 5
+                        result += '1';//el valor se sustituye por 1 y seguimos leyendo
                     }
                 }
 
             }
-            return result;
+            return result;//devolvemos el resultado
         }
-        document.write(fakeBin("45385593107843568"));
+        document.write(fakeBin("45385593107843568")); //y lo mostramos
     </script>
 </body>
 
