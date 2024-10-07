@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>abbrevName</title>
+</head>
+
+<body>
+    <script>
+        function abbrevName(name) {
+            var name = "Sam Harris";
+
+            var array = name.split(" ");
+
+            var lettersName = array[0].split("");
+
+            var firstInitial = lettersName[0];
+
+            var lettersSurname = array[1].split("");
+
+            var secondInitial = lettersSurname[0]
+
+            name = firstInitial + "." + secondInitial;
+
+            return name;
+        }
+
+    </script>
+</body>
+
+</html>
