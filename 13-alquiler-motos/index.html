@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alquiler de motos</title>
+</head>
+
+<body>
+    <h1>Alquiler de motos</h1>
+    <form>
+        <fieldset>
+            <legend>Reserva</legend>
+            <label for="fRecogida">Fecha Recogida</label>
+            <input type="date" id="fRecogida" name="fRecogida" />
+            <label for="fEntrega">Fecha Entrega</label>
+            <input type="date" id="fEntrega" name="fEntrega" />
+        </fieldset>
+        <br><br>
+        <fieldset>
+            <legend>Modelos Disponibles</legend>
+            <input type="radio" id="moto1"  value="Harley" name="moto">
+            <label for="moto1">Harley Davidsom</label><br>
+            <input type="radio" id="moto2"  value="Honda" name="moto">
+            <label for="moto2">Honda</label><br>
+            <input type="radio" id="moto3"  value="Yamaha" name="moto">
+            <label for="moto3">Yamaha</label><br>
+
+        </fieldset>
+        <p id="precio">Precio:</p>
+        <input type="button" value="Calcular Precio" onclick="finalPrice()"/>
+    </form>
+<script src="script.js"></script>
+</body>
+
+</html>
