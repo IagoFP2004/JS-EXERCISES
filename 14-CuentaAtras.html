@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restar fechas</title>
+    <style>
+        #caja {
+            text-align: center;
+            border: solid 1px;
+            border-radius: 20px;
+            width: 50%;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        #txt {
+            color: red;
+            font-size: x-large;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="caja">
+        <h1>Fecha de estreno:30/10/2024</h1>
+        <p id="txt"></p>
+    </div>
+    <script>
+        var intervalo = setInterval(showTimer, 1000)
+
+        var date = new Date();
+        const fechafin = 'Oct 30 2024 13:00:00'
+        var fechaEstreno = new Date(fechafin);
+
+        function getTime() {
+            var currentDate = new Date();
+            let date1 = fechaEstreno.getTime();
+            let date2 = currentDate.getTime();
+
+            let result = date1 - date2;
+
+            let fr = new Date(result);
+
+            return fr;
+        }
+
+        function showTimer() {
+            let dia = getTime().getDate();
+            let hora = getTime().getHours();
+            let min = getTime().getMinutes();
+            let sec = getTime().getSeconds();
+
+            document.getElementById("txt").innerHTML = `${dia}dias-${hora}horas-${min}minutos-${sec}segundos`
+
+            var suma
+
+        }
+    </script>
+</body>
+
+</html>
