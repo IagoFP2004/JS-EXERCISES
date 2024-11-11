@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrastrar imagen</title>
+    <style>
+        #contenedor{
+            height: 200px;
+            width: 200px;
+            border: 1px solid;
+        }
+
+        .img{
+            position: relative;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        #contenedor:hover{cursor: grab;}
+    </style>
+</head>
+<body>
+    <div id="contenedor">
+        <img src="img/preview-1.webp"  class="img">
+    </div>
+    <script src="script/script.js"></script>
+</body>
+</html>
