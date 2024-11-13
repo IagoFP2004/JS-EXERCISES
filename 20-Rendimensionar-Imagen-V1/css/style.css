@@ -1,0 +1,18 @@
+#contenedor{
+    width: 20%;
+    position: relative;
+}
+
+#cuadrado{
+    height: 20px;
+    width: 20px;
+    background-color: black;
+    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#imagen{
+    width: 100%;
+}
