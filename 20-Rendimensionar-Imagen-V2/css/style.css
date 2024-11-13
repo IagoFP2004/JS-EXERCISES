@@ -1,0 +1,16 @@
+#contenedor{
+    width: 20%;
+    position: relative;
+}
+
+#cuadrado{
+    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#imagen{
+    width: 100%;
+    position: relative;
+}
