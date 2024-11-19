@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creacion de nodos JS</title>
+</head>
+
+<body id="body">
+    <input  type="button" value="Generar imagen" onclick="generarImagen()"/>
+    <script>
+        //Creamos los elementos HTML desde JS
+        var div1 = document.createElement("div");
+        var div2 = document.createElement("div");
+        var imagen = document.createElement("img");
+
+        var p1 = document.createElement("p");
+        var p2 = document.createElement("p");
+
+        //Añadimos a los divs sus parrafos
+        div1.appendChild(p1);
+        div2.appendChild(p2);
+        //Creamos texto y se lo añadimos a los parrafos
+        var txt1 = document.createTextNode("Soy texto del div1");
+        var txt2 = document.createTextNode("Soy texto del div2");
+
+        p1.appendChild(txt1);
+        p2.appendChild(txt2);
+
+        //Creamos atributos para los diferentes elementos
+        var id1 = document.createAttribute("id");//atributo id para el div1
+        var id2 = document.createAttribute("id");//atriuto id para el div2
+
+        //Agregamos un valor para cada atributo
+        id1.value = "div1";
+        id2.value = "div2";
+
+        //Asignamos cada atributo a cada elemento
+        div1.setAttributeNode(id1);
+        div2.setAttributeNode(id2);
+
+        //Reemplazamos los parrafos de cada div
+        div1.replaceChild(p2, p1);
+        div2.appendChild(p1);
+
+        //Añadimos los divs al body y una imagen
+        document.body.appendChild(div1);
+        document.body.appendChild(div2);
+
+        //Funcion que genera una imagen al pulsar un boton
+        function generarImagen() {
+            var srcImg = document.createAttribute("src");//atributo src para la imagen
+            var alt = document.createAttribute("alt");//atributo alt para la imagen
+            imagen.setAttributeNode(srcImg);
+            imagen.setAttributeNode(alt);
+            //Agregamos un valor para cada atributo
+            srcImg.value = "https://pbs.twimg.com/profile_images/1386487936116424706/m9w7vxnc_400x400.jpg";
+            alt.value = "Imagen de messi";
+            document.body.insertBefore(imagen, div2)//Añadimos la imagen antes de div2
+        }
+
+    </script>
+</body>
+
+</html>
