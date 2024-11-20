@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creacion Agenda</title>
+    <style>
+        #label1 {
+            display: block;
+        }
+
+        #nombre {
+            width: 100%;
+        }
+
+        #label2 {
+            display: block;
+        }
+
+        #apellido {
+            width: 100%;
+        }
+
+        #label3 {
+            display: block;
+        }
+
+        #telefono {
+            width: 100%;
+        }
+
+        #button1 {
+            margin-top: 10px;
+            height: 20px;
+        }
+
+        #button2 {
+            margin-top: 10px;
+            height: 20px;
+        }
+
+        #button3{
+            margin-top: 10px;
+            height: 20px;
+        }
+
+        table{
+            border: solid;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table th{
+            background-color: #810C;
+            color: white;
+        }
+
+        
+        table tr td:hover{
+            background-color: lightblue;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <script>
+        //Creacion de elementos
+        const br = document.createElement("br");
+        const form = document.createElement("form");
+        const fieldset = document.createElement("fieldset");
+        const legend = document.createElement("legend");
+        const legendText = document.createTextNode("Datos del Contacto");
+
+        const labelNombre = document.createElement("label");
+        const nombreTxt = document.createTextNode("Nombre:")
+        var inputNombre = document.createElement("input");
+
+
+        const labelApellidos = document.createElement("label");
+        const apellidosTxt = document.createTextNode("Apellidos:")
+        var inputApellidos = document.createElement("input");
+
+        const labelTelefono = document.createElement("label");
+        const telefonoTxt = document.createTextNode("Telefono:")
+        var inputTelefono = document.createElement("input");
+
+        const inputButton1 = document.createElement("input");
+        const inputButton2 = document.createElement("input");
+        const inputButton3 = document.createElement("input");
+
+        //Creacion y asignacion de atributos
+        const typeTel = document.createAttribute("type");
+        typeTel.value = "tel";
+        inputTelefono.setAttributeNode(typeTel);
+
+        inputNombre.setAttribute("id", "nombre");
+        inputApellidos.setAttribute("id", "apellido");
+        inputTelefono.setAttribute("id", "telefono");
+
+        labelNombre.setAttribute("for", "nombre");
+        labelNombre.setAttribute("id", "label1");
+
+        labelApellidos.setAttribute("for", "apellidos");
+        labelApellidos.setAttribute("id", "label2");
+
+        labelTelefono.setAttribute("for", "telefono");
+        labelTelefono.setAttribute("id", "label3");
+
+
+        inputNombre.setAttribute("name", "nombre");
+        inputApellidos.setAttribute("name", "apellidos");
+        inputTelefono.setAttribute("name", "telefono");
+
+        inputButton1.setAttribute("value", "AÑADIR");
+        inputButton1.setAttribute("type", "button");
+        inputButton1.setAttribute("id", "button1");
+
+        inputButton2.setAttribute("value", "BORRAR");
+        inputButton2.setAttribute("type", "button");
+        inputButton2.setAttribute("id", "button2");
+
+        inputButton3.setAttribute("value", "MOSTRAR");
+        inputButton3.setAttribute("type", "button");
+        inputButton3.setAttribute("id", "button3");
+
+        //Insercion de elementos
+        fieldset.appendChild(legend);
+        legend.appendChild(legendText);
+        fieldset.appendChild(form);
+        form.appendChild(labelNombre);
+        labelNombre.appendChild(nombreTxt);
+        form.appendChild(inputNombre);
+        form.appendChild(labelApellidos);
+        labelApellidos.appendChild(apellidosTxt);
+        form.appendChild(inputApellidos)
+        form.appendChild(labelTelefono);
+        labelTelefono.appendChild(telefonoTxt);
+        form.appendChild(inputTelefono);
+        form.appendChild(br);
+        form.appendChild(inputButton1);
+        form.appendChild(inputButton2);
+
+        //Añadir resultado al DOM
+        document.body.appendChild(fieldset);
+        document.body.appendChild(inputButton3);
+
+        var añadir = document.getElementById("button1");
+
+
+        añadir.addEventListener("click", insertar);
+
+
+        class Contacto {
+            constructor(nombre, apellido, telefono) {
+                this.nombre = nombre;
+                this.apellido = apellido;
+                this.telefono = telefono;
+            }
+        }
+
+        contactoArray = []
+        function insertar() {
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellido").value;
+            var telefono = document.getElementById("telefono").value;
+            var contacto = new Contacto(nombre, apellido, telefono);
+            contactoArray.push(contacto);
+            console.log(contactoArray);
+            alert("Usuario Insertado con exito")
+        }
+        inputButton3.addEventListener("click", mostraTabla)
+        function mostraTabla() {
+            const table = document.createElement("table");
+            const th1 = document.createElement("th");
+            const th1Txt = document.createTextNode("Nombre");
+            const th2 = document.createElement("th");
+            const th2Txt = document.createTextNode("Apellidos");
+            const th3 = document.createElement("th");
+            const th3Txt = document.createTextNode("Telefono");
+
+            table.appendChild(th1);
+            table.appendChild(th2);
+            table.appendChild(th3);
+            th1.appendChild(th1Txt);
+            th2.appendChild(th2Txt);
+            th3.appendChild(th3Txt);
+            contactoArray.forEach(contacto => {
+                const tr = document.createElement("tr");
+                const td1 = document.createElement("td");
+                const td2 = document.createElement("td");
+                const td3 = document.createElement("td");
+
+                var td1Txt = document.createTextNode(contacto.nombre);
+                var td2Txt = document.createTextNode(contacto.apellido);
+                var td3Txt = document.createTextNode(contacto.telefono);
+
+                td1.appendChild(td1Txt);
+                td2.appendChild(td2Txt);
+                td3.appendChild(td3Txt);
+
+                table.appendChild(tr);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+            });
+
+            document.body.appendChild(table);
+        }
+
+        inputButton2.addEventListener("click", borrar)
+        function borrar() {
+            inputNombre.value = " ";
+            inputApellidos.value = " ";
+            inputTelefono.value = " ";
+
+        }
+
+    </script>
+</body>
+
+</html>
