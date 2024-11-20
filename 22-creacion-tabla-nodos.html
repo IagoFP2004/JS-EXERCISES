@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creacion de tabla dinamicamente</title>
+    <style>
+        *{
+            font-family: Arial,sans-serif;
+        }
+
+        th{
+            background-color: black;
+            color: white;
+        }
+
+        .borde{
+            border: solid;
+        }
+
+        tr:first-child{
+            background-color: lightgray;
+        }
+
+        tr:nth-child(3){
+            background-color: lightgray;
+        }
+
+        tr:nth-child(5){
+            background-color: lightgray;
+        }
+
+        tr:nth-child(7){
+            background-color: lightgray;
+        }
+
+        tr:nth-child(9){
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        var table = document.createElement("table");
+        var th = document.createElement("th");
+        var tbody = document.createElement("tbody");
+
+        var cabecera = document.createTextNode("NUMEROS");
+
+        th.appendChild(cabecera);
+
+        numeros.forEach(numero => {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+
+            let valorTD = document.createTextNode(numero+".");
+
+            td.appendChild(valorTD);
+            table.appendChild(th);
+            table.appendChild(tbody);
+            tbody.appendChild(tr);
+            tr.appendChild(td);
+        });
+
+        tableB = document.createAttribute('class');
+        tableB.value="borde";
+        table.setAttributeNode(tableB);
+
+
+        document.body.appendChild(table);
+    </script>
+</body>
+
+</html>
