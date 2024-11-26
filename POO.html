@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuntes POO</title>
+</head>
+
+<body>
+    <form>
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" placeholder="nombre" /><br><br>
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" name="apellidos" id="apellidos" placeholder="apellidos" /><br><br>
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" id="edad" placeholder="edad" /><br><br>
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rol">
+            <option value="-">-</option>
+            <option value="admin">Admin</option>
+            <option value="dev">Dev</option>
+            <option value="limpieza">Limpieza</option>
+            <option value="tecnicos">Tecnicos</option>
+        </select><br><br>
+        <input type="button" value="Insertar" id="boton1" />
+        <input type="button" value="Mostrar" id="boton2" />
+        <input type="button" value="borrar" id="boton3" />
+
+    </form>
+
+    <script>
+
+        class Persona {
+            constructor(nombre, apellidos, edad, rol) {
+                this.nombre = nombre;
+                this.apellidos = apellidos;
+                this.edad = edad;
+                this.rol = rol;
+            }
+
+            saludar(){
+                console.log("Hola, soy"+this.nombre);
+            }
+        }
+
+        class Usuario extends Persona{
+            constructor(){
+                super();
+            }
+        }
+
+
+        arrayData = [];
+        function añadirUsuarios() {
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellidos").value;
+            var edad = document.getElementById("edad").value;
+            var rol = document.getElementById("rol").value;
+            var usuario = new Usuario(nombre, apellido, edad, rol);
+            usuario.saludar();
+            arrayData.push(usuario);
+        }
+
+        var boton1 = document.getElementById("boton1");
+        boton1.addEventListener("click", añadirUsuarios);
+
+        function mostrarUsuarios() {
+            arrayData.forEach(usuario => {
+                const p = document.createElement("p");
+                var pTXT = document.createTextNode(`→Usuario:${usuario.nombre},Apellidos:${usuario.apellidos},Edad:${usuario.edad},rol:${usuario.rol}`)
+                p.appendChild(pTXT);
+                document.body.appendChild(p);
+            });
+        }
+
+        var boton2 = document.getElementById("boton2");
+        boton2.addEventListener("click", mostrarUsuarios);
+
+        function borrar(){
+            arrayData = [];
+            var nombre = document.getElementById("nombre").value = " ";
+            var apellido = document.getElementById("apellidos").value=" ";
+            var edad = document.getElementById("edad").value=" ";
+            var rol = document.getElementById("rol").value="-";
+            location.reload();
+        }
+
+        
+        boton3.addEventListener("click", borrar);
+
+    </script>
+</body>
+
+</html>
