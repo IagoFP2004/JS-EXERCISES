@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio asincronismo</title>
+</head>
+
+<body>
+    <h1>Asincronismo con Tablas</h1>
+    <p>Numero de filas:</p>
+    <select id="selector">
+        <option value="todos">Todos</option>
+        <option value="5">5</option>
+    </select>
+    <table>
+        <thead>
+            <th>userId</th>
+            <th>Id</th>
+            <th>title</th>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+    <script>
+        var tbody = document.getElementById("tbody");
+        var valorSelector = document.getElementById("selector");
+        function obtenerDatos() {
+            const valor = valorSelector.value  
+            console.log(valor);
+            tbody.innerHTML=" "
+            fetch('https://jsonplaceholder.typicode.com/posts')
+                .then(respuesta => respuesta.json())
+                .then(datosjson => {
+                    if (valor === "todos") {
+                        datosjson.forEach(json => {
+                            mostrarTabla(json);
+                        });
+                    }
+
+                    if (valor === "5") {
+                        const filteredData = datosjson.slice(0, 5); 
+                        filteredData.forEach(json => {
+                            mostrarTabla(json);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al obtener datos:", error);
+                })
+        }
+
+        function mostrarTabla(datos) {
+            const tbody = document.getElementById("tbody");
+
+            const tr = document.createElement("tr");
+            const td1 = document.createElement("td");
+            const td2 = document.createElement("td");
+            const td3 = document.createElement("td");
+
+            var td1TXT = document.createTextNode(`${datos.userId}`)
+            var td2TXT = document.createTextNode(`${datos.id}`)
+            var td3TXT = document.createTextNode(`${datos.title}`)
+
+            td1.appendChild(td1TXT);
+            td2.appendChild(td2TXT);
+            td3.appendChild(td3TXT);
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+
+            tbody.appendChild(tr);
+        }
+
+       
+        valorSelector.addEventListener("change", obtenerDatos)
+        obtenerDatos();
+    </script>
+</body>
+
+</html>
