@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar XML</title>
+</head>
+
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        var comunidades = new Map();
+
+        function obtenerDatosComunidades() {
+            xhr.open('GET', 'comunidades.xml', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        let xmlDoc = xhr.responseXML;
+                        if (xmlDoc) {
+                            let comunidadElements = xmlDoc.getElementsByTagName('comunidad'); 
+                            for (let i = 0; i < comunidadElements.length; i++) {
+                                let comunidad = comunidadElements[i];
+                                let nombre = comunidad.getElementsByTagName('nombre')[0].textContent;
+                                let id = comunidad.getElementsByTagName('id')[0].textContent
+                                comunidades.set(id,nombre)
+                            } 
+                        } else {
+                            console.error('No se pudo analizar el XML.');
+                        }
+                    } else {
+                        console.error('Error al cargar el archivo XML. Código de estado:', xhr.status);
+                    }
+                }
+            };
+            xhr.send(); 
+        }
+
+        function mostrarBotones(){
+            
+            
+            
+        }
+
+        obtenerDatosComunidades();
+        mostrarBotones();
+    </script>
+</body>
+
+</html>

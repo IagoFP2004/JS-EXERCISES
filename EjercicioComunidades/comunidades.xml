@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comunidades>
+    <comunidad>
+        <id>1</id>
+        <nombre>Galicia</nombre>
+    </comunidad>
+    <comunidad>
+        <id>2</id>
+        <nombre>Extremadura</nombre>
+    </comunidad>
+    <comunidad>
+        <id>3</id>
+        <nombre>Comunidad Valenciana</nombre>
+    </comunidad>
+</comunidades>
