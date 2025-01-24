@@ -8,43 +8,80 @@
 </head>
 
 <body>
+
     <script>
         let xhr = new XMLHttpRequest();
         var comunidades = new Map();
+        var provincias = new Map();
 
-        function obtenerDatosComunidades() {
+        function obtenerDatos() {
+            obtenerComunidades();
+            obtenerProvincias();
+
+
+        }
+
+        function obtenerComunidades() {
             xhr.open('GET', 'comunidades.xml', true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         let xmlDoc = xhr.responseXML;
                         if (xmlDoc) {
-                            let comunidadElements = xmlDoc.getElementsByTagName('comunidad'); 
+                            let comunidadElements = xmlDoc.getElementsByTagName('comunidad');
                             for (let i = 0; i < comunidadElements.length; i++) {
                                 let comunidad = comunidadElements[i];
                                 let nombre = comunidad.getElementsByTagName('nombre')[0].textContent;
                                 let id = comunidad.getElementsByTagName('id')[0].textContent
-                                comunidades.set(id,nombre)
-                            } 
+                                comunidades.set(id, nombre)
+                            }
                         } else {
                             console.error('No se pudo analizar el XML.');
                         }
+
+                        mostrarBotones(comunidades);
+
                     } else {
                         console.error('Error al cargar el archivo XML. Código de estado:', xhr.status);
                     }
                 }
             };
-            xhr.send(); 
+            xhr.send();
         }
 
-        function mostrarBotones(){
-            
-            
-            
-        }
+        function obtenerProvincias() {
 
-        obtenerDatosComunidades();
-        mostrarBotones();
+            fetch('provincias.json')
+                .then(respuesta => respuesta.json())
+                .then(datos => {
+                  datos.provincias.forEach(dato => {
+
+                    provincias.set(dato.id, dato.provincias)
+
+                  });
+                  
+                })
+
+        }
+        function mostrarBotones(array) {
+            array.forEach((nombre, id) => {
+                let input = document.createElement("input");
+                input.setAttribute('id', `${id}`);
+                input.setAttribute('type', 'radio');
+                input.setAttribute('value', `${id}`);
+
+                let label = document.createElement("label");
+                label.setAttribute(`for`, `${id}`);
+                let labelTexto = document.createTextNode(`${nombre}`);
+                label.appendChild(labelTexto);
+
+                document.body.appendChild(input);
+                document.body.appendChild(label);
+            });
+        }
+        console.log(provincias);
+        
+        obtenerDatos()
     </script>
 </body>
 

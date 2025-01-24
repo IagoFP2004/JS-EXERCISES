@@ -1,18 +1,15 @@
 {
-    "comunidades": [
+    "provincias": [
       {
         "id": 1,
-        "nombre": "Galicia",
         "provincias": ["A Coruña", "Lugo", "Ourense", "Pontevedra"]
       },
       {
         "id": 2,
-        "nombre": "Extremadura",
         "provincias": ["Badajoz", "Cáceres"]
       },
       {
         "id": 3,
-        "nombre": "Comunidad Valenciana",
         "provincias": ["Alicante", "Castellón", "Valencia"]
       }
     ]
